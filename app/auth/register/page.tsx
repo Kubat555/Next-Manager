@@ -23,7 +23,7 @@ const RegisterPage: React.FC = () => {
         }));
     };
 
-    // const router = useRouter();
+    const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
