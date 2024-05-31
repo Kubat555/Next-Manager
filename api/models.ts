@@ -30,4 +30,14 @@ export interface User {
     role: string;
     email: string;
   }
+
+export interface Project {
+    id: string;
+    name: string;
+    description: string;
+    createdDate: string;
+    employeeProjectId: number;
+    employeeAddedDate: string;
+}
+
   

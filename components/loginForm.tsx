@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { handleLogin } from '@services/authService';
+import { getUserData } from '@services/userService';
 
 export default function LoginForm() {
   const [userName, setUserName] = useState('');
@@ -19,7 +20,7 @@ export default function LoginForm() {
     event.preventDefault();
     try {
       await handleLogin(userName, password);
-      router.push('/');
+      router.push('/dashboard');
     } catch (error) {
       setError('Failed to login. Please check your credentials and try again.');
     }

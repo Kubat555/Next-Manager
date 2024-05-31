@@ -1,16 +1,16 @@
-import { fetchUserData } from "@api/data";
-import { User } from "@api/models";
 
 
-export const getUserData = async (): Promise<User> => {
+
+export const getUserData =  () => {
     try {
-      const userId = localStorage.getItem('userId');
-      if (!userId) throw new Error('User ID not found in local storage');
-      
-      const userData = await fetchUserData(userId);
-      return userData.response;
+      const user = localStorage.getItem('userData');
+      if(user !== null) {
+        const s = JSON.parse(user);
+        return s;
+      }
+
+      return null;
     } catch (error) {
-      console.error('Failed to fetch user data:', error);
-      throw new Error('Failed to fetch user data');
+      console.error('Failed to get user data:', error);
     }
-  };
+};
