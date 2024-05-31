@@ -23,7 +23,7 @@ const RegisterPage: React.FC = () => {
         }));
     };
 
-    const router = useRouter();
+    // const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -36,11 +36,11 @@ const RegisterPage: React.FC = () => {
         }
     };
 
-    useEffect(() => {
-        if (isAuthenticated()) {
-            router.push('/');
-        }
-    }, [router]);
+    // useEffect(() => {
+    //     if (isAuthenticated()) {
+    //         router.push('/');
+    //     }
+    // }, [router]);
 
     return (
         <div className="flex justify-center items-center h-screen  bg-blue-100">
