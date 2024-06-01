@@ -7,11 +7,13 @@ import { getProjects } from "@services/projectsService";
 import { useEffect, useState } from "react";
 import { Project } from "@api/models";
 import { formatDate } from "@utils/format";
+import ProjectCreateForm from "@components/projectCreateForm";
 
 const Page = () => {
   const [items, setItems] = useState<Project[] | null>(null);
 
-  useEffect(() => {
+
+  const loadProjects  =  () => {
     const userId = localStorage.getItem('userId');
     if (userId === null) {
       return;
@@ -19,13 +21,19 @@ const Page = () => {
     getProjects(userId)?.then((projects) => {
       setItems(projects);
     });
+  };
+
+  useEffect(() => {
+    loadProjects ();
   }, []);
+
+   
 
 
   return (
-    <BentoGrid className="max-w-7xl mx-auto" title="Projects">
+    <BentoGrid className="max-w-7xl mx-auto" title="Projects" buttons={<ProjectCreateForm onProjectAdded={loadProjects } />}>
       {items === null ? (
-        <p>Проектов нет</p>
+        <p className="text-blue-400 text-xl">Loading....</p>
       ) : (
         items.map((item, i) => (
           <BentoGridItem
@@ -52,3 +60,5 @@ const Skeleton = () => (
     className="rounded-md"
   />
 );
+
+

@@ -1,6 +1,6 @@
 // src/services/api.ts
 import axios from 'axios';
-import { ApiResponse, LoginResponse, Project, RegisterData, User } from "@api/models";
+import { ApiResponse, LoginResponse, Project, ProjectData, RegisterData, User } from "@api/models";
 
 const API_URL = 'https://project-management-system-001.azurewebsites.net/api'; // Замените на ваш URL
 
@@ -23,7 +23,7 @@ export const login = async (userName: string, password: string): Promise<LoginRe
   const token = response.data.response.token;
   if (token) {
     // Устанавливаем куки вручную
-    document.cookie = `token=${token}; path=/; max-age=3600; secure; samesite=strict`;
+    document.cookie = `token=${token}; path=/; max-age=7200; secure; samesite=strict`;
     console.log('Token saved as a cookie');
   } else {
     console.error('Token not found in response');
@@ -43,5 +43,10 @@ export const fetchUserData = async (id: string): Promise<ApiResponse<User>> => {
 
 export const fetchProjects = async (userId: string): Promise<ApiResponse<Project[]>> => {
   const response = await api.get('/ProjectContoller/GetEmployeeProjects/', { params: { userId } });
+  return response.data;
+};
+
+export const addProject = async (projectData: ProjectData): Promise<ApiResponse<null>> => {
+  const response = await api.post('/ProjectContoller/CreateProject/', projectData);
   return response.data;
 };

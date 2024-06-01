@@ -6,18 +6,11 @@ import LogoutForm from './logoutForm';
 import { getUserData } from '@services/userService';
 import { useEffect, useState } from 'react';
 import { User } from '@api/models';
-import { isAuthenticated } from '@services/authService';
 import { useRouter } from 'next/navigation';
 
 export default function SideNav() {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
-
-  // useEffect(() => {
-  //   if (!isAuthenticated()) {
-  //     router.push('/auth/login');
-  //   }
-  // }, [router]);
 
   useEffect(() => {
     const userData = getUserData();

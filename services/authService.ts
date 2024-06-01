@@ -57,6 +57,7 @@ export const isAuthenticated = (req: NextRequest): boolean => {
       logout();
       return false;
     }
+    console.log("Token is valid!");
     return true;
   } catch (error) {
     console.error('Failed to verify token:', error);

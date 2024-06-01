@@ -36,18 +36,12 @@ const RegisterPage: React.FC = () => {
         }
     };
 
-    // useEffect(() => {
-    //     if (isAuthenticated()) {
-    //         router.push('/');
-    //     }
-    // }, [router]);
-
     return (
         <div className="flex justify-center items-center h-screen  bg-blue-100">
             <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 w-full max-w-screen-md" onSubmit={handleSubmit}>
-                <h1 className="text-2xl font-bold mb-6 text-center">Register</h1>
-                <div className="mb-4 flex justify-between">
-                    <div className="w-1/2 mr-2">
+                <h1 className="text-2xl font-medium mb-10 text-center">Register your new account!</h1>
+                <div className="mb-4 md:flex md:justify-between">
+                    <div className="md:w-1/2 md:mr-2 mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
                             First Name
                         </label>
@@ -65,7 +59,7 @@ const RegisterPage: React.FC = () => {
                             />
                         </div>
                     </div>
-                    <div className="w-1/2 ml-2">
+                    <div className="md:w-1/2 md:mr-2">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
                             Last Name
                         </label>
@@ -84,8 +78,8 @@ const RegisterPage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="mb-4 flex justify-between">
-                    <div className="w-1/2 mr-2">
+                <div className="mb-4 md:flex md:justify-between">
+                    <div className="md:w-1/2 md:mr-2 mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="userName">
                             Username
                         </label>
@@ -103,7 +97,7 @@ const RegisterPage: React.FC = () => {
                             />
                         </div>
                     </div>
-                    <div className="w-1/2 ml-2">
+                    <div className="md:w-1/2 md:mr-2">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                             Email
                         </label>
@@ -140,15 +134,15 @@ const RegisterPage: React.FC = () => {
                         />
                     </div>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-center">
                     <button
-                        className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="w-80 py-2 px-4 btnSecondary"
                         type="submit"
                     >
                         Register
                     </button>
                 </div>
-                <div className="mt-4 text-center">
+                <div className="mt-10 text-center">
                     <p>
                         Already have an account?{' '}
                         <Link href="/auth/login" className="text-blue-500 hover:underline">

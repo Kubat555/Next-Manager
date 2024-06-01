@@ -20,7 +20,10 @@ export default function LoginForm() {
     event.preventDefault();
     try {
       await handleLogin(userName, password);
-      router.push('/dashboard');
+      console.log("Login success");
+      setTimeout(() => {
+        router.push('/dashboard');
+      }, 100);
     } catch (error) {
       setError('Failed to login. Please check your credentials and try again.');
     }
@@ -29,7 +32,7 @@ export default function LoginForm() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
+        <h1 className="text-2xl font-medium mb-6 text-center">Let's log in!</h1>
         {error && (
           <div className="mb-4 p-4 text-red-700 bg-red-100 rounded-lg flex items-center">
             <ExclamationCircleIcon className="h-5 w-5 mr-2" />
@@ -61,7 +64,7 @@ export default function LoginForm() {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 transition duration-200"
+            className="w-full px-4 py-2 rounded-lg font-semibold btnSecondary"
           >
             Login
           </button>

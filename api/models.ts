@@ -40,4 +40,8 @@ export interface Project {
     employeeAddedDate: string;
 }
 
-  
+export type ProjectData = {
+    name: string;
+    description: string;
+    userId: string;
+}
