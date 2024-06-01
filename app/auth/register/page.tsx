@@ -41,9 +41,9 @@ const RegisterPage: React.FC = () => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen  bg-blue-100">
+        <div className="flex justify-center items-center h-screen  bg-slate-800">
             <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 w-full max-w-screen-md" onSubmit={handleSubmit}>
-                <h1 className="text-2xl font-medium mb-10 text-center">Register your new account!</h1>
+                <h1 className="text-2xl font-bold mb-10 text-center magic-animated">Register your new account!</h1>
                 <div className="mb-4 md:flex md:justify-between">
                     <div className="md:w-1/2 md:mr-2 mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
