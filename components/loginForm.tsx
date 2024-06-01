@@ -1,6 +1,6 @@
 'use client';
 import {
-  AtSymbolIcon,
+  UserIcon,
   KeyIcon,
   ExclamationCircleIcon,
 } from '@heroicons/react/24/outline';
@@ -33,7 +33,7 @@ export default function LoginForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+      <div className="w-full max-w-md p-8">
         <h1 className="text-2xl font-bold mb-6 text-center sky-animated">Let's log in!</h1>
         {error && (
           <div className="mb-4 p-4 text-red-700 bg-red-100 rounded-lg flex items-center">
@@ -43,7 +43,7 @@ export default function LoginForm() {
         )}
         <form onSubmit={handleSubmit}>
           <div className="mb-4 flex items-center border rounded-lg">
-            <AtSymbolIcon className="h-5 w-5 ml-2 text-gray-400" />
+            <UserIcon className="h-5 w-5 ml-2 text-gray-400" />
             <input
               type="text"
               placeholder="Username"

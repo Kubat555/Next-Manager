@@ -108,7 +108,7 @@ input[type='number']::-webkit-outer-spin-button {
   background: linear-gradient(to right, rgb(123, 31, 162), rgb(103, 58, 183), rgb(244, 143, 177), rgb(123, 31, 162));
   background-size: 200%;
 
-  display: inline-block;
+  display: block;
   position: relative;
   
   white-space: pre-wrap;
@@ -125,7 +125,7 @@ input[type='number']::-webkit-outer-spin-button {
   background: linear-gradient(to right, rgb(64, 163, 245), rgb(98, 205, 255), rgb(40, 187, 255), rgb(28, 147, 226));
   background-size: 200%;
 
-  display: inline-block;
+  display: block;
   position: relative;
   
   white-space: pre-wrap;
