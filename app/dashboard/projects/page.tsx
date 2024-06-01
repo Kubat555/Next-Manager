@@ -33,8 +33,11 @@ const Page = () => {
   return (
     <BentoGrid className="max-w-7xl mx-auto" title="Projects" buttons={<ProjectCreateForm onProjectAdded={loadProjects } />}>
       {items === null ? (
-        <p className="text-blue-400 text-xl">Loading....</p>
+        <p className="sky-animated text-2xl">Loading....</p>
       ) : (
+        (items.length === 0) ? (
+          <p className="font-bold text-gray-400 text-2xl">No projects found... ^_^</p>
+        ) :
         items.map((item, i) => (
           <BentoGridItem
             key={i}

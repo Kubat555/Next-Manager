@@ -16,7 +16,7 @@ export const BentoGrid = ({
         <div className={cn(className, "px-3")}>
             <div className="flex justify-between items-center">
                 <div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-5 mt-2 text-3xl">
-                    <span className=" hover:text-blue-500">{title}</span>
+                    <span className="hover:text-sky-500">{title}</span>
                 </div>
                 {buttons}
             </div>
@@ -50,12 +50,12 @@ export const BentoGridItem = ({
     return (
         <Link href={`/dashboard/projects/${projectId}`} passHref
             className={cn(
-                "rounded-xl group/bento hover:bg-blue-100 hover:shadow-lg hover:shadow-blue-300 transition duration-200 shadow-input dark:shadow-none p-5 dark:bg-slate-800 borde bg-slate-100 flex flex-col",
+                "rounded-lg p-5 group/bento hover:bg-sky-100 transition duration-200 shadow-input dark:shadow-none dark:bg-slate-800 bg-slate-100 flex flex-col",
                 className
             )}
         >
             {header}
-            <div className="group-hover/bento:translate-x-2 transition duration-200 flex flex-col justify-between flex-1 mt-3">
+            <div className="group-hover/bento:translate-x-2 transition duration-200 flex flex-col justify-between flex-1 mt-3 ">
                 <div>
                     <div className="font-sans  text-neutral-600 dark:text-neutral-200 mb-2 mt-2 flex justify-between">
                         <span className="">Project name: </span>
