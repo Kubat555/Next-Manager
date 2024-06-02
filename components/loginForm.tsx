@@ -24,7 +24,7 @@ export default function LoginForm() {
   }, [router])
 
   async function handleRouteChange() {
-    await router.push('/dashboard');
+    router.replace('/dashboard');
   }
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -33,8 +33,6 @@ export default function LoginForm() {
     try {
       await handleLogin(userName, password);
       console.log("Login success");
-      router.push('/dashboard');
-      handleRouteChange();
     } catch (error) {
       setError('Failed to login. Please check your credentials and try again.');
       setIsLoading(false);

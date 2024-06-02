@@ -1,4 +1,5 @@
-import { fetchUserData, login, register } from "../api/data";
+
+import { login, register } from "../api/data";
 import { RegisterData } from "../api/models";
 import { NextRequest } from 'next/server';
 
@@ -14,6 +15,7 @@ export const handleLogin = async (email: string, password: string) => {
       console.error('Login failed:', data.message);
       throw new Error('Failed to login');
     }
+    window.location.href = '/dashboard';
   } catch (error) {
     console.error('Login failed:', error);
     throw new Error('Failed to login');
