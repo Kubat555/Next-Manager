@@ -1,12 +1,11 @@
 
-
-
 export const getUserData =  () => {
     try {
-      const user = localStorage.getItem('userData');
-      if(user !== null) {
-        const s = JSON.parse(user);
-        return s;
+      const name = localStorage.getItem('userName');
+      const role = localStorage.getItem('userRole');
+      if(name !== null && role !== null) {
+        const user = {name, role};
+        return user;
       }
 
       return null;

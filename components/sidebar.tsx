@@ -10,7 +10,7 @@ import clsx from 'clsx';
 
 
 export default function SideNav() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<{name:string, role:string} | null>(null);
 
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function SideNav() {
         <div className="w-ful md:w-40 text-2xl font-bold">
           <span className="sky-animated">Hi! Welcome
             <span className="">
-              {" " + user?.firstName }
+              {" " + user?.name }
             </span>
             {(" ^_^")}
           </span>

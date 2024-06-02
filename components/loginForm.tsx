@@ -4,7 +4,7 @@ import {
   KeyIcon,
   ExclamationCircleIcon,
 } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { handleLogin } from '@services/authService';
@@ -18,6 +18,11 @@ export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
+  useEffect(() => {
+    // Prefetch the dashboard page
+    router.prefetch('/dashboard')
+  }, [router])
+
   const handleSubmit = async (event: React.FormEvent) => {
     setIsLoading(true);
     event.preventDefault();
@@ -25,6 +30,9 @@ export default function LoginForm() {
       await handleLogin(userName, password);
       console.log("Login success");
       router.push('/dashboard');
+      setTimeout(() => {
+        router.push('/dashboard');
+      }, 1000);
     } catch (error) {
       setError('Failed to login. Please check your credentials and try again.');
       setIsLoading(false);

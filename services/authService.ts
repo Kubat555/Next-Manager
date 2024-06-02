@@ -6,12 +6,14 @@ export const handleLogin = async (email: string, password: string) => {
   try {
     console.log("Start login")
     const data = await login(email, password);
-    localStorage.setItem('token', data.response.token);
     localStorage.setItem('userId', data.response.userId);
-    const userData = await fetchUserData(data.response.userId);
-    localStorage.setItem('userData', JSON.stringify(userData.response));
-
-    return data;
+    localStorage.setItem('userName', data.response.name);
+    localStorage.setItem('userRole', data.response.role);
+    localStorage.setItem('token', data.response.token);
+    if(!data.isSuccess){
+      console.error('Login failed:', data.message);
+      throw new Error('Failed to login');
+    }
   } catch (error) {
     console.error('Login failed:', error);
     throw new Error('Failed to login');
@@ -33,9 +35,6 @@ export const logout = async () => {
   localStorage.clear();
   document.cookie = `token=""; path=/; max-age=0; secure; samesite=strict`;
 };
-
-
-
 
 
 export const isAuthenticated = (req: NextRequest): boolean => {

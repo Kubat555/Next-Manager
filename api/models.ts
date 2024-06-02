@@ -1,14 +1,16 @@
-export interface LoginResponse {
+export type LoginResponse = {
     isSuccess: boolean;
     message: string;
     statusCode: number;
     response: {
         token: string;
         userId: string;
+        name: string;
+        role: string;
     }
 }
 
-export interface RegisterData {
+export type RegisterData = {
     firstName: string;
     lastName: string;
     userName: string;
@@ -16,14 +18,14 @@ export interface RegisterData {
     password: string;
 }
 
-export interface ApiResponse<T> {
+export type ApiResponse<T> = {
     isSuccess: boolean;
     message: string;
     statusCode: number;
     response: T;
 }
 
-export interface User {
+export type User = {
     id: string;
     firstName: string;
     lastName: string;
@@ -31,7 +33,12 @@ export interface User {
     email: string;
   }
 
-export interface Project {
+  export type UserData = {
+    firstName: string;
+    lastName: string;
+  }
+
+export type Project = {
     id: string;
     name: string;
     description: string;
@@ -44,4 +51,53 @@ export type ProjectData = {
     name: string;
     description: string;
     userId: string;
+}
+
+export type Task = {
+    id: string;
+    name: string;
+    priorityId: number;
+    priorityName: string;
+    statusId: number;
+    statusName: string;
+    description: string;
+    createdDate: string;
+    deadline: string;
+    executorId: string;
+    executorName: string;
+    projectId: string;
+}
+
+export type Tasks = {
+    toDo: Task[];
+    inProgress: Task[];
+    done: Task[];
+    tasksCount: number;
+    completedTasksCount: number;
+}
+
+export type TaskData = {
+    name: string;
+    priorityId: number;
+    statusId: number;
+    createdDate: string;
+    deadline: string;
+    projectId: string;
+    executorId: string;
+    description: string;
+}
+
+export type Priority = {
+    id: number;
+    name: string;
+}
+
+export type Status = {
+    id: number;
+    name: string;
+}
+
+export type Role = {
+    id: number;
+    name: string;
 }
