@@ -20,8 +20,12 @@ export default function LoginForm() {
 
   useEffect(() => {
     // Prefetch the dashboard page
-    router.prefetch('/dashboard')
+    void router.prefetch('/dashboard');
   }, [router])
+
+  async function handleRouteChange() {
+    await router.push('/dashboard');
+  }
 
   const handleSubmit = async (event: React.FormEvent) => {
     setIsLoading(true);
@@ -30,9 +34,7 @@ export default function LoginForm() {
       await handleLogin(userName, password);
       console.log("Login success");
       router.push('/dashboard');
-      setTimeout(() => {
-        router.push('/dashboard');
-      }, 1000);
+      handleRouteChange();
     } catch (error) {
       setError('Failed to login. Please check your credentials and try again.');
       setIsLoading(false);
