@@ -23,10 +23,6 @@ export default function LoginForm() {
     void router.prefetch('/dashboard');
   }, [router])
 
-  async function handleRouteChange() {
-    router.replace('/dashboard');
-  }
-
   const handleSubmit = async (event: React.FormEvent) => {
     setIsLoading(true);
     event.preventDefault();

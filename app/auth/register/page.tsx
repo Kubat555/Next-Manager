@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { RegisterData } from '@api/models';
 import { handleRegistration, isAuthenticated } from '@services/authService';
 import { useRouter } from 'next/navigation';
@@ -34,8 +34,7 @@ const RegisterPage: React.FC = () => {
         if (!res.isSuccess) {
             console.error(res.message);
         } else {
-            alert('Confirm your email to complete registration.');
-            router.push('/auth/login');
+            router.push('/register/success');
         }
         setIsLoading(false);
     };

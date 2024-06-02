@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { ApiResponse, LoginResponse, Priority, Project, ProjectData, RegisterData, Role, Status, TaskData, Tasks, User, UserData } from "@api/models";
 
-const API_URL = 'https://project-management-system-001.azurewebsites.net/api'; // Замените на ваш URL
+const API_URL = "https://project-management-system-001.azurewebsites.net/api"; // Замените на ваш URL
 
 const api = axios.create({
   baseURL: API_URL,
