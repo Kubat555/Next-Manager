@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { RegisterData } from '@api/models';
 import { handleRegistration, isAuthenticated } from '@services/authService';
 import { useRouter } from 'next/navigation';
-import { UserIcon, AtSymbolIcon, KeyIcon, IdentificationIcon } from '@heroicons/react/24/outline';
+import { UserIcon, AtSymbolIcon, KeyIcon, IdentificationIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
 const RegisterPage: React.FC = () => {
@@ -15,6 +15,7 @@ const RegisterPage: React.FC = () => {
         password: '',
     });
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -29,20 +30,33 @@ const RegisterPage: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         setIsLoading(true);
         e.preventDefault();
-
-        const res = await handleRegistration(formData);
-        if (!res.isSuccess) {
-            console.error(res.message);
-        } else {
-            router.push('/register/success');
+        console.log(formData);
+        try {
+            const res = await handleRegistration(formData);
+            if (!res.isSuccess) {
+                setError('Failed to register: ' + res.message);
+                console.error(res.message);
+            }
+            else {
+                router.push('/register/success');
+            }
         }
-        setIsLoading(false);
+        catch (err) {
+            setError('Failed to register. Please check your credentials and try again.');
+            setIsLoading(false);
+        }
     };
 
     return (
         <div className="flex justify-center items-center h-screen ">
             <form className=" px-8 pt-6 pb-8 mb-4 w-full max-w-screen-md" onSubmit={handleSubmit}>
                 <h1 className="text-2xl font-bold mb-10 text-center sky-animated">Register your new account!</h1>
+                {error && (
+                    <div className="mb-4 p-4 text-red-700 bg-red-100 rounded-lg flex items-center">
+                        <ExclamationCircleIcon className="h-5 w-5 mr-2" />
+                        {error}
+                    </div>
+                )}
                 <div className="mb-4 md:flex md:justify-between text-md ">
                     <div className="md:w-1/2 md:mr-2 mb-4">
                         <label className="block text-gray-700 font-bold mb-2" htmlFor="firstName">
