@@ -45,27 +45,25 @@ export const BentoGridItem = ({
     date?: string | React.ReactNode;
     description?: string | React.ReactNode;
     header?: React.ReactNode;
-    projectId?: number;
+    projectId?: string;
 }) => {
     return (
-        <Link href={`/dashboard/projects/${projectId}`} passHref
+        <Link href={`/dashboard/projects/${projectId}/tasks`} passHref
             className={cn(
-                "rounded-lg p-5 group/bento hover:bg-sky-100 transition duration-200 shadow-input dark:shadow-none dark:bg-slate-800 bg-slate-100 flex flex-col",
+                "rounded-lg group/bento hover:bg-sky-100 transition duration-200 shadow-input bg-white border border-slate-200 flex flex-col",
                 className
             )}
         >
             {header}
-            <div className="group-hover/bento:translate-x-2 transition duration-200 flex flex-col justify-between flex-1 mt-3 ">
+            <div className="px-5 pb-5 group-hover/bento:translate-x-2 transition duration-200 flex flex-col justify-between flex-1 mt-3 ">
                 <div>
-                    <div className="font-sans  text-neutral-600 dark:text-neutral-200 mb-2 mt-2 flex justify-between">
-                        <span className="">Project name: </span>
-                        <span className="font-medium">{title} </span>
-                        
+                    <div className="font-sans  text-neutral-600 dark:text-neutral-200 mb-2 ">
+                        <span className="font-medium text-lg text-black">{title} </span>
+                        <hr className="border-t border-neutral-300 dark:border-neutral-600 mt-2" />
                     </div>
                     <div className="font-sans text-neutral-600 text-s dark:text-neutral-300 flex justify-between">
                         <span className="">Created date: </span>
                         <span className="font-medium">{date} </span>
-                        
                     </div>
                     <div className="font-sans font-normal text-neutral-600 text-s mt-3 dark:text-neutral-300">
                         <p className="font-medium">Description:</p>

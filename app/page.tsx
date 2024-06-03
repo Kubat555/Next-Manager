@@ -18,10 +18,10 @@ export default function Page() {
         }}
         className="relative flex flex-col gap-4 items-center justify-center px-4"
       >
-        <div className="text-3xl md:text-7xl font-bold dark:text-white text-center">
+        <div className="text-3xl md:text-5xl font-bold text-white text-center">
           Welcome to Next Manager
         </div>
-        <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4 px-[2rem] text-center">
+        <div className="font-extralight text-base md:text-2xl text-neutral-200 py-4 px-[2rem] text-center">
           This is a full-stack application utilizing Next.js, Tailwind CSS, and TypeScript for the frontend, and ASP.NET Core, C#, SQL Server, and Azure for the backend.
         </div>
         <Link href={"/auth/login"} className="btnSecondary text-lg ">
