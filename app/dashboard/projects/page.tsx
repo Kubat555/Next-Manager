@@ -7,7 +7,7 @@ import { getProjects } from "@services/projectsService";
 import { useEffect, useState } from "react";
 import { Project } from "@api/models";
 import { formatDate } from "@utils/format";
-import ProjectCreateForm from "@components/ui/projects/projectCreateForm";
+import ProjectCreateForm from "@components/ui/projects/project-create-form";
 import LoadingIndicator from "@components/loadingIndicator";
 
 const Page = () => {

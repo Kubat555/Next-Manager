@@ -1,5 +1,5 @@
-import { addProject, fetchAllTasks, fetchProjects, fetchTasks } from "@api/data";
-import { ProjectData } from "@api/models";
+import { addProject, addTask, fetchAllTasks, fetchPriorities, fetchProjects, fetchTasks } from "@api/data";
+import { ProjectData, TaskData } from "@api/models";
 
 
 
@@ -66,6 +66,40 @@ export const getAllTasks =  async (projectId:number) => {
   } 
   catch (error) {
     console.error('Failed to get tasks:', error);
+    return null;
+  }
+};
+
+export const AddNewTask =  async (taskData: TaskData) => {
+  try {
+    const data = await addTask(taskData);
+    
+    if( !data.isSuccess){
+      console.error('Failed to add task:', data.message);
+      return null;
+    }
+
+    return data.response;
+  } 
+  catch (error) {
+    console.error('Failed to add task:', error);
+    return null;
+  }
+};
+
+export const getPriorities =  async () => {
+  try {
+    const data = await fetchPriorities();
+    
+    if( !data.isSuccess){
+      console.error('Failed to get priorities:', data.message);
+      return null;
+    }
+
+    return data.response;
+  } 
+  catch (error) {
+    console.error('Failed to get priorities:', error);
     return null;
   }
 };

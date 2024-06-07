@@ -101,3 +101,28 @@ export type Role = {
     id: number;
     name: string;
 }
+
+export type UserStatistics = {
+    countOfTasks: number;
+    countOfCompletedTasks: number;
+    countOfProjects: number;
+    countOfFinishedProjects: number;
+    countOfCompletedTaskInMonth: TasksMonth[];
+    lastestTasks: TasksDataStatistics[];
+}
+
+export type TasksMonth = {
+    year: string;
+    month: string;
+    completedTasks : number;
+}
+
+export type TasksDataStatistics = {
+    id: number;
+    name: string;
+    priorityName : string;
+    statusName: string;
+    deadline: string;
+    projectId: string;
+    projectName: string;
+}

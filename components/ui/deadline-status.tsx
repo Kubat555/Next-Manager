@@ -19,18 +19,18 @@ const DeadlineStatus: React.FC<DeadlineStatusProps> = ({ deadline }) => {
     let statusClass = '';
 
     if (diffDays > 0) {
-        statusText = `Осталось ${diffDays} дней`;
+        statusText = `${diffDays} days left`;
         statusClass = 'bg-emerald-500 text-white p-2 rounded-md';
     } else if (diffDays === 0) {
-        statusText = 'Сегодня';
+        statusText = 'Today';
         statusClass = 'bg-cyan-500 text-white p-2 rounded-md';
     } else {
-        statusText = 'Истек';
+        statusText = 'Overdue';
         statusClass = 'bg-red-500 text-white p-2 rounded-md';
     }
 
     return (
-        <span className={clsx('inline-flex items-center', statusClass)}>
+        <span className={clsx('inline-flex items-center text-sm', statusClass)}>
             <ClockIcon className="w-5 h-5 mr-1" />
             {statusText}
         </span>

@@ -1,6 +1,6 @@
 // src/services/api.ts
 import axios from 'axios';
-import { ApiResponse, LoginResponse, Priority, Project, ProjectData, RegisterData, Role, Status, TaskData, Tasks, User, UserData } from "@api/models";
+import { ApiResponse, LoginResponse, Priority, Project, ProjectData, RegisterData, Role, Status, TaskData, Tasks, User, UserData, UserStatistics } from "@api/models";
 
 const API_URL = "https://project-management-system-001.azurewebsites.net/api"; // Замените на ваш URL
 
@@ -138,3 +138,8 @@ export const ChangeRole = async (userId: string, roleName: string): Promise<ApiR
   const response = await api.post('/Users/ChangeRole/', {params: { userId, roleName }});
   return response.data;
 }
+
+export const fetchUserStatistic = async (id: string): Promise<ApiResponse<UserStatistics>> => {
+  const response = await api.get('/Users/GetUserStatistic/', { params: { id } });
+  return response.data;
+};

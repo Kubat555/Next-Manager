@@ -17,6 +17,7 @@ const TasksTable = ({ id }: { id: string }) => {
     const [activeStatus, setActiveStatus] = useState('ToDo');
     const [activePriority, setActivePriority] = useState('All');
     const [deadlineFilter, setDeadlineFilter] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -38,9 +39,9 @@ const TasksTable = ({ id }: { id: string }) => {
             if (tasksData) {
                 setTasks(tasksData);
                 setFilteredTasks(tasksData.toDo);
-            } else {
-                console.error('Failed to fetch tasks');
-            }
+                
+            } 
+            setLoading(false);
         };
 
         fetchData();
@@ -90,7 +91,7 @@ const TasksTable = ({ id }: { id: string }) => {
             />
 
             <div className="mt-6 flow-root">
-                {tasks === null ? (<LoadingIndicator />) :
+                {loading ? (<LoadingIndicator />) :
                     filteredTasks.length === 0 ?
                         (<div className='font-bold text-gray-400 text-2xl'><p>No tasks found.... ^_^</p></div>) : (
                             <div className="inline-block min-w-full align-middle">
