@@ -54,18 +54,18 @@ export type ProjectData = {
 }
 
 export type Task = {
-    id: string;
+    id: number;
     name: string;
     priorityId: number;
     priorityName: string;
     statusId: number;
     statusName: string;
-    description: string;
+    desciption: string;
     createdDate: string;
     deadline: string;
     executorId: string;
     executorName: string;
-    projectId: string;
+    projectId: number;
 }
 
 export type Tasks = {
@@ -82,7 +82,7 @@ export type TaskData = {
     statusId: number;
     createdDate: string;
     deadline: string;
-    projectId: string;
+    projectId: number;
     executorId: string;
     description: string;
 }

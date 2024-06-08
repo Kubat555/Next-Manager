@@ -14,6 +14,7 @@ api.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+  config.headers['Content-Type'] = 'application/json';
   return config;
 });
 
@@ -66,7 +67,8 @@ export const deleteEmployeeFromProject = async (userId: string, projectId: numbe
 };
 
 export const updateProject = async (id: number, projectData: ProjectData): Promise<ApiResponse<null>> => {
-  const response = await api.put('/ProjectContoller/EditProject/', {params: { id }, projectData});
+  const response = await api.put('/ProjectContoller/EditProject/', projectData, {
+    params: { id }});
   return response.data;
 };
 
@@ -93,7 +95,8 @@ export const deleteTask = async (id: number): Promise<ApiResponse<null>> => {
 };
 
 export const updateTask = async (id: number, taskData: TaskData): Promise<ApiResponse<null>> => {
-  const response = await api.put('/Tasks/EditTask/', {params: { id }, taskData});
+  const response = await api.put('/Tasks/EditTask/', taskData, {
+    params: { id }});
   return response.data;
 };
 

@@ -2,48 +2,64 @@
 
 import { useEffect, useState } from 'react';
 import { getTasks, getAllTasks } from '@services/projectsService';
-import { Task, Tasks } from '@api/models';
+import { Priority, Status, Task, Tasks, User } from '@api/models';
 import { formatDate } from '@utils/format';
 import PriorityStatus from '@components/ui/proirity';
 import DeadlineStatus from '../deadline-status';
 import TaskFilter from './task-filter';
 import LoadingIndicator from '@components/loadingIndicator';
-import Link from 'next/link';
+import TaskEditForm from './task-edit-form';
 
 
-const TasksTable = ({ id }: { id: string }) => {
+
+const TasksTable = ({ 
+    id,
+    users,
+    priorities,
+    statuses,
+    role
+ }: { 
+    id: string,
+    users: User[] | undefined,
+    priorities: Priority[] | null,
+    statuses: Status[] | null,
+    role: string
+ }) => {
     const [tasks, setTasks] = useState<Tasks | null>(null);
     const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
     const [activeStatus, setActiveStatus] = useState('ToDo');
     const [activePriority, setActivePriority] = useState('All');
     const [deadlineFilter, setDeadlineFilter] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [task, setTask] = useState<Task | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+    const fetchData = async () => {
+        const userId = localStorage.getItem('userId');
+        const role = localStorage.getItem('userRole');
+
+        if (!userId || !role) {
+            console.error('User ID or role not found in localStorage');
+            return;
+        }
+
+        let tasksData: Tasks | null;
+        if (role === 'Employee') {
+            tasksData = await getTasks(Number(id), userId);
+        } else {
+            tasksData = await getAllTasks(Number(id));
+        }
+
+        if (tasksData) {
+            setTasks(tasksData);
+            setFilteredTasks(tasksData.toDo);
+            
+        } 
+        setLoading(false);
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            const userId = localStorage.getItem('userId');
-            const role = localStorage.getItem('userRole');
-
-            if (!userId || !role) {
-                console.error('User ID or role not found in localStorage');
-                return;
-            }
-
-            let tasksData: Tasks | null;
-            if (role === 'Employee') {
-                tasksData = await getTasks(Number(id), userId);
-            } else {
-                tasksData = await getAllTasks(Number(id));
-            }
-
-            if (tasksData) {
-                setTasks(tasksData);
-                setFilteredTasks(tasksData.toDo);
-                
-            } 
-            setLoading(false);
-        };
-
         fetchData();
     }, [id]);
 
@@ -78,6 +94,14 @@ const TasksTable = ({ id }: { id: string }) => {
         setFilteredTasks(currentTasks);
     };
 
+    const updateTask = (task: Task) => {
+        setTask(task);
+        setIsModalOpen(true);
+    };
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <div className="p-4">
 
@@ -101,6 +125,7 @@ const TasksTable = ({ id }: { id: string }) => {
                                             <div
                                                 key={task.id}
                                                 className="mb-2 w-full rounded-md bg-white p-4 hover:bg-sky-100"
+                                                onClick={() => {updateTask(task)}}
                                             >
                                                 <div className="flex items-center justify-between border-b pb-4">
                                                     <div>
@@ -162,7 +187,7 @@ const TasksTable = ({ id }: { id: string }) => {
                                                 <tr
                                                     key={task.id}
                                                     className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg hover:bg-sky-100 cursor-pointer"
-                                                    onClick={() => {console.log('bankai')}}
+                                                    onClick={() => {updateTask(task)}}
                                                 >
                                                         <td className="whitespace-nowrap py-3 pl-6 pr-3">
                                                             <div className="flex items-center gap-3">
@@ -202,6 +227,8 @@ const TasksTable = ({ id }: { id: string }) => {
                             </div>
                         )}
             </div>
+
+            <TaskEditForm role={role} isModalOpen={isModalOpen} closeModal={closeModal} onTaskEdited={fetchData} task={task} users={users} priorities={priorities} statuses={statuses} />
         </div>
     );
 };

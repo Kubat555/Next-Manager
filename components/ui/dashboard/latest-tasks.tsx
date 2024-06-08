@@ -48,7 +48,7 @@ const LatestTasks = ({tasks}: {tasks:TasksDataStatistics[]}) => {
                   <DeadlineStatus deadline={task.deadline}/>
                 </p>
                 <p
-                  className={`truncate text-sm font-medium md:text-base w-[85px]`}
+                  className={`truncate text-sm font-medium md:text-base w-[85px] hidden lg:block`}
                 >
                   {task.statusName}
                 </p>

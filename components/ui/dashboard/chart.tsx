@@ -52,7 +52,7 @@ export const ProjectPerMonthChart = ({ tasksMonth }: { tasksMonth: TasksMonth[] 
                   height: `${(chartHeight / topLabel) * task.completedTasks}px`,
                 }}
               ></div>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-400 rotate-90 md:rotate-0 ">
                 {monthNames[parseInt(task.month) - 1]}
               </p>
             </div>

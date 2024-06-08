@@ -1,4 +1,4 @@
-import { addProject, addTask, fetchAllTasks, fetchPriorities, fetchProjects, fetchTasks } from "@api/data";
+import { addProject, addTask, deleteTask, fetchAllTasks, fetchPriorities, fetchProjects, fetchStatuses, fetchTasks, updateTask } from "@api/data";
 import { ProjectData, TaskData } from "@api/models";
 
 
@@ -100,6 +100,57 @@ export const getPriorities =  async () => {
   } 
   catch (error) {
     console.error('Failed to get priorities:', error);
+    return null;
+  }
+};
+
+export const getStatuses =  async () => {
+  try {
+    const data = await fetchStatuses();
+    
+    if( !data.isSuccess){
+      console.error('Failed to get statuses:', data.message);
+      return null;
+    }
+
+    return data.response;
+  } 
+  catch (error) {
+    console.error('Failed to get statuses:', error);
+    return null;
+  }
+};
+
+export const EditTask =  async (taskId:number, taskData: TaskData) => {
+  try {
+    const data = await updateTask(taskId, taskData);
+    
+    if( !data.isSuccess){
+      console.error('Failed to edit task:', data.message);
+      return null;
+    }
+
+    return data.response;
+  } 
+  catch (error) {
+    console.error('Failed to edit task:', error);
+    return null;
+  }
+};
+
+export const DeleteTask =  async (taskId:number) => {
+  try {
+    const data = await deleteTask(taskId);
+    
+    if( !data.isSuccess){
+      console.error('Failed to delete task:', data.message);
+      return null;
+    }
+
+    return data.response;
+  } 
+  catch (error) {
+    console.error('Failed to delete task:', error);
     return null;
   }
 };
