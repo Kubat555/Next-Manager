@@ -7,7 +7,7 @@ import { AddNewTask } from "@services/projectsService";
 
 
 interface TaskCreateFormProps {
-  projectId: string;
+  projectId: number;
   onTaskAdded: () => void;
   users?: User[];
   priorities?: Priority[] | null;

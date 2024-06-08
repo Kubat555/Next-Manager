@@ -43,7 +43,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                 <div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-5 mt-2 text-3xl">
                     <span className="hover:text-sky-500">Tasks</span>
                 </div>
-                {role !== "Employee" ? (<TaskCreateForm projectId={id} onTaskAdded={UpdatePage} users={users} priorities={priorities} />) : (<></>)}
+                {role !== "Employee" ? (<TaskCreateForm projectId={Number(id )} onTaskAdded={UpdatePage} users={users} priorities={priorities} />) : (<></>)}
 
             </div>
             <TasksTable id={id} users={users} priorities={priorities} statuses={statuses} role={role} />
