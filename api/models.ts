@@ -43,6 +43,7 @@ export type Project = {
     name: string;
     description: string;
     createdDate: string;
+    isCompleted: boolean;
     employeeProjectId: number;
     employeeAddedDate: string;
 }
@@ -51,6 +52,12 @@ export type ProjectData = {
     name: string;
     description: string;
     userId: string;
+    isCompleted: boolean;
+}
+
+export type ProjectInfo = {
+    project: Project;
+    users: User[];
 }
 
 export type Task = {

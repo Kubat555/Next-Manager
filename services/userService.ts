@@ -1,4 +1,4 @@
-import { fetchUserStatistic, fetchUsers } from "@api/data";
+import { checkUsername, fetchUserStatistic, fetchUsers } from "@api/data";
 import { User, UserStatistics } from "@api/models";
 
 export const getUserData = () => {
@@ -38,5 +38,14 @@ export const getUsers = async () => {
     return res.response as User[];
   } catch (error) {
     console.error('Failed to get users:', error);
+  }
+};
+
+export const isUsernameTaken = async (userName: string) => {
+  try {
+    const res = await checkUsername(userName);
+    return res.isSuccess;
+  } catch (error) {
+    console.error('Failed to check username', error);
   }
 };

@@ -36,7 +36,8 @@ const ProjectCreateForm: FC<ProjectCreateFormProps> = ({ onProjectAdded }) => {
             const projectData: ProjectData = {
                 name: formData.get('name') as string,
                 description: formData.get('description') as string,
-                userId: userId
+                userId: userId,
+                isCompleted: false
             }
             console.log(projectData);
 

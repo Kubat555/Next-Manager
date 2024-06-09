@@ -1,6 +1,6 @@
 // src/services/api.ts
 import axios from 'axios';
-import { ApiResponse, LoginResponse, Priority, Project, ProjectData, RegisterData, Role, Status, TaskData, Tasks, User, UserData, UserStatistics } from "@api/models";
+import { ApiResponse, LoginResponse, Priority, Project, ProjectData, ProjectInfo, RegisterData, Role, Status, TaskData, Tasks, User, UserData, UserStatistics } from "@api/models";
 
 const API_URL = "https://project-management-system-001.azurewebsites.net/api"; // Замените на ваш URL
 
@@ -57,7 +57,8 @@ export const deleteProject = async (id: number): Promise<ApiResponse<null>> => {
 };
 
 export const addEmployeeToProject = async (userId: string, projectId: number): Promise<ApiResponse<null>> => {
-  const response = await api.post('/ProjectContoller/AddEmployeeToProject/', {params: { userId, projectId }});
+  const response = await api.post('/ProjectContoller/AddEmployeeToProject/', {
+    params: { userId, projectId }});
   return response.data;
 };
 
@@ -69,6 +70,12 @@ export const deleteEmployeeFromProject = async (userId: string, projectId: numbe
 export const updateProject = async (id: number, projectData: ProjectData): Promise<ApiResponse<null>> => {
   const response = await api.put('/ProjectContoller/EditProject/', projectData, {
     params: { id }});
+  return response.data;
+};
+
+export const fetchProjectById = async (projectId: number): Promise<ApiResponse<ProjectInfo>> => {
+  const response = await api.get('/ProjectContoller/GetProjectById/', {
+    params: { projectId }});
   return response.data;
 };
 
@@ -144,5 +151,10 @@ export const ChangeRole = async (userId: string, roleName: string): Promise<ApiR
 
 export const fetchUserStatistic = async (id: string): Promise<ApiResponse<UserStatistics>> => {
   const response = await api.get('/Users/GetUserStatistic/', { params: { id } });
+  return response.data;
+};
+
+export const checkUsername = async (userName: string): Promise<ApiResponse<null>> => {
+  const response = await api.get('/Users/UsernameCheck/', { params: { userName } });
   return response.data;
 };
