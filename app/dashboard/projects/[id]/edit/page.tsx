@@ -176,7 +176,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             {user?.role &&
-                                                (<div className="text-sm">
+                                                (<div className="text-sm font-bold">
                                                     <span className={clsx({
                                                         "gold-animated": user?.role === 'Admin',
                                                         "magic-animated": user?.role === 'Manager',
