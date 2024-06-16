@@ -12,16 +12,18 @@ import LoadingIndicator from "@components/loadingIndicator";
 
 const Page = () => {
   const [items, setItems] = useState<Project[] | null>(null);
-
+  const [role, setRole] = useState<string | null>(null);
 
   const loadProjects  =  () => {
     const userId = localStorage.getItem('userId');
+    const rol = localStorage.getItem('userRole');
     if (userId === null) {
       return;
     }
     getProjects(userId)?.then((projects) => {
       setItems(projects);
     });
+    setRole(rol);
   };
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const Page = () => {
 
 
   return (
-    <BentoGrid className="max-w-7xl mx-auto" title="Projects" buttons={<ProjectCreateForm onProjectAdded={loadProjects } />}>
+    <BentoGrid className="max-w-7xl mx-auto" title={"Project"} buttons={<ProjectCreateForm onProjectAdded={loadProjects } role={role} />}>
       {items === null ? (
         <LoadingIndicator/>
       ) : (

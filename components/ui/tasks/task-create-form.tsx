@@ -1,9 +1,10 @@
 "use client";
 import Modal from "@components/ui/modal";
 import { FC, useState } from "react";
-import { PlusIcon } from '@heroicons/react/24/outline';
+import { PlusIcon, Cog6ToothIcon } from '@heroicons/react/24/outline';
 import { Priority, TaskData, User } from "@api/models";
 import { AddNewTask } from "@services/projectsService";
+import Link from "next/link";
 
 
 interface TaskCreateFormProps {
@@ -58,10 +59,17 @@ const TaskCreateForm: FC<TaskCreateFormProps> = ({ projectId, onTaskAdded, users
 
   return (
     <div className="">
-      <button onClick={handleOpenModal} className="btnPrimary">
-        <PlusIcon className="w-5 h-5 mr-2 -ms-1" />
-        <span>Create Task</span>
-      </button>
+      <div className="flex justify-between ">
+        <Link href={`/dashboard/projects/${projectId}/edit`} className="btnSecondary flex items-center">
+            <Cog6ToothIcon className="w-5 h-5 mr-2 -ms-1" />
+            <span>About project</span>
+        </Link>
+        <button onClick={handleOpenModal} className="btnPrimary">
+          <PlusIcon className="w-5 h-5 mr-2 -ms-1" />
+          <span>Create task</span>
+        </button>
+      </div>
+
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} title="Create New Task">
         <form onSubmit={handleSubmit} className="p-4 md:p-5">

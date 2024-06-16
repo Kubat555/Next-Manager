@@ -20,11 +20,11 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .btnSecondary{
-  @apply bg-gray-700 text-white font-medium py-2 px-4 rounded hover:bg-blue-500 hover:text-white transition-colors duration-300 ease-in-out;
+  @apply  hover:text-slate-100 hover:bg-slate-500 font-medium py-2 px-4 rounded bg-slate-800 text-white transition-colors duration-300 ease-in-out;
 }
 
 .btnPrimary{
-  @apply bg-slate-100 text-black font-medium py-2 px-4 rounded hover:bg-sky-100 hover:text-blue-500 transition-colors duration-300 ease-in-out border border-blue-500 flex items-center justify-center;
+  @apply bg-sky-100 text-sky-400 font-medium py-2 px-4 rounded hover:bg-sky-500 hover:text-white transition-colors duration-300 ease-in-out flex items-center justify-center;
 }
 
 @keyframes move-bg {
@@ -45,7 +45,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 /* gold */
 .gold-animated {
-  background: linear-gradient(to right, #FEDB37, #FDB931, #f3ba3e, #ee9949, #FEDB37);
+  background: linear-gradient(to right, #FEDB37, #FDB931, #9f7928, #8A6E2F, #FEDB37);
   background-size: 200%;
   -webkit-background-clip: text;
   background-clip: text;

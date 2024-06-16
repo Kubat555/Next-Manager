@@ -1,14 +1,33 @@
+'use client';
 import { User } from "@api/models";
-import clsx from "clsx";
+import Role from "@components/ui/animated-role";
+import EditEmployeeModal from './../employees/employee-edit-form';
+import { useState } from "react";
+import {ShieldExclamationIcon} from '@heroicons/react/24/outline';
 
-export default async function EmployeesTable({
+export default function EmployeesTable({
   employees: customers,
+  update,
 }: {
   employees: User[];
+  update: () => void;
 }) {
+  const [user, setUser] = useState<User>();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const openModal = (employee: User) => {
+    setUser(employee);
+    setIsOpen(true);
+  };
+
   return (
     <div className="w-full">
-      <h1 className={`mb-8 text-xl md:text-2xl`}>
+      <h1 className={`mb-8 text-xl md:text-2xl font-sans font-bold text-neutral-600 dark:text-neutral-200 mt-2`}>
         Employees
       </h1>
       <div className="mt-6 flow-root">
@@ -33,10 +52,16 @@ export default async function EmployeesTable({
                         </p>
                       </div>
                     </div>
-                    <div className="flex w-full items-center justify-between border-b py-5">
+                    <div className="flex w-full items-center justify-between py-5">
                       <div className="flex w-1/2 flex-col">
                         <p className="text-xs">Role</p>
-                        <p className="font-medium">{customer.role}</p>
+                        <div className="font-medium">{<Role role={customer.role} />}</div>
+                      </div>
+                      <div className="flex w-1/2 flex-col">
+                        <button className="btnSecondary flex items-center justify-center" onClick={()=>{openModal(customer)}}>
+                            <ShieldExclamationIcon className="w-5 h-5 mr-2" />
+                            Edit role
+                        </button>
                       </div>
                     </div>
                     {/* <div className="pt-4 text-sm">
@@ -75,19 +100,13 @@ export default async function EmployeesTable({
                         {customer.email}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                         {customer?.role &&
-                                                (<div className="text-md font-bold">
-                                                    <span className={clsx({
-                                                        "gold-animated": customer?.role === 'Admin',
-                                                        "magic-animated": customer?.role === 'Manager',
-                                                        "silver-animated": customer?.role === 'Employee',
-                                                    })}>
-                                                        {customer?.role}
-                                                    </span>
-                                                </div>)}
+                         {customer?.role && (<Role role={customer.role} />)}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        <button className="text-blue-600">Edit</button>
+                        <button className="btnSecondary flex items-center" onClick={()=>{openModal(customer)}}>
+                          <ShieldExclamationIcon className="w-5 h-5 mr-2" />
+                          Edit role
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -97,6 +116,8 @@ export default async function EmployeesTable({
           </div>
         </div>
       </div>
+
+      <EditEmployeeModal isOpen={isOpen} onClose={closeModal} update={update} user={user}/>
     </div>
   );
 }

@@ -9,11 +9,13 @@ import { addNewProject } from "@services/projectsService";
 
 interface ProjectCreateFormProps {
     onProjectAdded: () => void;
+    role: string | null;
 }
 
-const ProjectCreateForm: FC<ProjectCreateFormProps> = ({ onProjectAdded }) => {
+const ProjectCreateForm: FC<ProjectCreateFormProps> = ({ onProjectAdded, role }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
 
     const handleOpenModal = () => {
         setIsModalOpen(true);
@@ -57,13 +59,14 @@ const ProjectCreateForm: FC<ProjectCreateFormProps> = ({ onProjectAdded }) => {
 
     return (
         <div className="">
-            <button
+            {role && role !== "Employee" ? (<button
                 onClick={handleOpenModal}
                 className="btnPrimary "
             >
                 <PlusIcon className="w-5 h-5 mr-2 -ms-1" />
                 <span>Create project</span>
-            </button>
+            </button>) : (<></>)}
+            
 
             <Modal isOpen={isModalOpen} onClose={handleCloseModal} title="Create New Project">
                 <form onSubmit={handleSubmit} className="p-4 md:p-5">

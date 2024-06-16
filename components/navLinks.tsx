@@ -1,6 +1,7 @@
 'use client';
 import {
   UserGroupIcon,
+  UserIcon,
   HomeIcon,
   DocumentDuplicateIcon,
 } from '@heroicons/react/24/outline';
@@ -18,22 +19,27 @@ const links = [
     icon: DocumentDuplicateIcon,
   },
   { name: 'Employees', href: '/dashboard/employees', icon: UserGroupIcon },
+  { name: 'Personal', href: '/dashboard/user', icon: UserIcon },
 ];
 
-export default function NavLinks() {
+export default function NavLinks({ role }: { role: string | undefined }) {
   const pathname = usePathname();
+  const filteredLinks = role === "Admin" 
+    ? links
+    : links.filter(link => link.name !== "Employees");
+
   return (
     <>
-      {links.map((link) => {
+      {filteredLinks.map((link) => {
         const LinkIcon = link.icon;
         return (
           <Link
             key={link.name}
             href={link.href}
             className={clsx(
-              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
+              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-sky-500 md:flex-none md:justify-start md:p-2 md:px-3',
               {
-                'bg-sky-100 text-blue-600': pathname === link.href,
+                'bg-sky-100 text-sky-500': pathname === link.href,
               }
             )}
           >

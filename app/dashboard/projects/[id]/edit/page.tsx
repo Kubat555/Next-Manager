@@ -128,8 +128,8 @@ const Page = ({ params }: { params: { id: string } }) => {
                             <button
                                 key={nav}
                                 className={clsx(
-                                    "w-1/2 py-2 border-transparent border-b font-bold",
-                                    { ' text-sky-500 border-b-2 border-sky-500 ': activeNav === nav, '  border-gray-200 hover:text-gray-600 hover:border-gray-300 hover:border-b-2': activeNav !== nav }
+                                    "w-1/2 py-2 border-b font-bold",
+                                    { ' text-sky-500 border-b-2 z-10 border-sky-500 ': activeNav === nav, '': activeNav !== nav }
                                 )}
                                 onClick={() => setActiveNav(nav)}
                             >
@@ -142,7 +142,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 pb-4">
                 {/* Таблица сотрудников, скрытая на маленьких экранах */}
-                <div className={clsx("md:col-span-2", { "hidden md:block": activeNav === "Team" })}>
+                <div className={clsx("md:col-span-2", { "hidden md:block": activeNav === "Overview" })}>
                     <button
                         className="btnSecondary w-full flex items-center justify-center mb-5 md:hidden"
                         onClick={()=> setIsOpen(true)}
@@ -206,7 +206,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                 </div>
 
                 {/* Информация о проекте, скрытая на маленьких экранах */}
-                <div className={clsx("bg-white p-6 rounded-lg border", { "hidden md:block": activeNav !== "Team" })}>
+                <div className={clsx("bg-white p-6 rounded-lg border", { "hidden md:block": activeNav !== "Overview" })}>
                     <h2 className="text-lg font-semibold text-gray-900 dark:text-white border-b pb-3 mb-5">Project Information</h2>
                     <form onSubmit={handleEditProject}>
                         <div className="mb-4">

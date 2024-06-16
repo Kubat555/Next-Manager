@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Priority, Status, User } from "@api/models";
 import { getPriorities, getProjectById, getStatuses } from "@services/projectsService";
-import Link from "next/link";
+
 
 const Page = ({ params }: { params: { id: string } }) => {
     const { id } = params;
@@ -39,15 +39,19 @@ const Page = ({ params }: { params: { id: string } }) => {
 
     return (
         <main className="w-full h-full">
-            <div className="px-4 flex justify-between items-center">
-                <div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-5 mt-2 text-3xl">
-                    <span className="hover:text-sky-500">Tasks</span>
-                </div>
-                <div className="flex">
-                    {role !== "Employee" ? (<TaskCreateForm projectId={Number(id)} onTaskAdded={UpdatePage} users={users} priorities={priorities} />) : (<></>)}
-                    <Link href={`/dashboard/projects/${id}/edit`} className="btnSecondary ml-5">
-                        About
-                    </Link>
+            <div className="px-4 flex justify-between items-center ">
+                
+                <div className="w-full">
+                    {role !== "Employee" ? (
+                        <div>
+                                <TaskCreateForm projectId={Number(id)} onTaskAdded={UpdatePage} users={users} priorities={priorities} />
+                        </div>
+                    ) : (
+                    <div className="hidden md:block font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-5 mt-2 text-3xl">
+                        <span className="hover:text-sky-500">Tasks</span>
+                    </div>
+                )}
+
                 </div>
 
             </div>

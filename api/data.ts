@@ -57,10 +57,10 @@ export const deleteProject = async (id: number): Promise<ApiResponse<null>> => {
 };
 
 export const addEmployeeToProject = async (userId: string, projectId: number): Promise<ApiResponse<null>> => {
-  const response = await api.post('/ProjectContoller/AddEmployeeToProject/', {
-    params: { userId, projectId }});
+  const response = await api.post(`/ProjectContoller/AddEmployeeToProject/?userId=${userId}&projectId=${projectId}`);
   return response.data;
 };
+
 
 export const deleteEmployeeFromProject = async (userId: string, projectId: number): Promise<ApiResponse<null>> => {
   const response = await api.delete('/ProjectContoller/DeleteEmployeeFromProject/', {params: { userId, projectId }});
@@ -144,8 +144,8 @@ export const fetchRoles = async (): Promise<ApiResponse<Role[]>> => {
   return response.data;
 };
 
-export const ChangeRole = async (userId: string, roleName: string): Promise<ApiResponse<null>> => {
-  const response = await api.post('/Users/ChangeRole/', {params: { userId, roleName }});
+export const changeRole = async (userId: string, roleName: string): Promise<ApiResponse<null>> => {
+  const response = await api.post(`/Users/ChangeRole/?userId=${userId}&roleName=${roleName}`);
   return response.data;
 }
 

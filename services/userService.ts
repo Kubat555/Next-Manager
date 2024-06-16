@@ -1,4 +1,4 @@
-import { checkUsername, fetchUserStatistic, fetchUsers } from "@api/data";
+import { changeRole, checkUsername, deleteUser, fetchUserStatistic, fetchUsers } from "@api/data";
 import { User, UserStatistics } from "@api/models";
 
 export const getUserData = () => {
@@ -49,3 +49,25 @@ export const isUsernameTaken = async (userName: string) => {
     console.error('Failed to check username', error);
   }
 };
+
+export const changeUserRole = async (userId: string, roleName: string) => {
+  try {
+    const res = await changeRole(userId, roleName);
+    if (!res.isSuccess) {
+      console.error('Failed to change user role:', res.message);
+    }
+  } catch (error) {
+    console.error('Failed to change user role:', error);
+  }
+}
+
+export const removeUser = async (userId: string) => {
+  try {
+    const res = await deleteUser(userId);
+    if (!res.isSuccess) {
+      console.error('Failed to delete user role:', res.message);
+    }
+  } catch (error) {
+    console.error('Failed to delete user role:', error);
+  }
+}
