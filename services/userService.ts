@@ -42,12 +42,8 @@ export const getUsers = async () => {
 };
 
 export const isUsernameTaken = async (userName: string) => {
-  try {
     const res = await checkUsername(userName);
     return res.isSuccess;
-  } catch (error) {
-    console.error('Failed to check username', error);
-  }
 };
 
 export const changeUserRole = async (userId: string, roleName: string) => {

@@ -155,6 +155,6 @@ export const fetchUserStatistic = async (id: string): Promise<ApiResponse<UserSt
 };
 
 export const checkUsername = async (userName: string): Promise<ApiResponse<null>> => {
-  const response = await api.get('/Users/UsernameCheck/', { params: { userName } });
+  const response = await api.get('/Authentication/UsernameCheck/', { params: { userName } });
   return response.data;
 };

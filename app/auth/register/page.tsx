@@ -17,7 +17,7 @@ const RegisterPage: React.FC = () => {
     });
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-    const [isUsernameValid, setIsUsernameValid] = useState<boolean | null>(null);
+    const [isUsernameValid, setIsUsernameValid] = useState<boolean | undefined>(false);
     const [usernameError, setUsernameError] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,14 +32,14 @@ const RegisterPage: React.FC = () => {
         if (formData.userName) {
             const timer = setTimeout(async () => {
                 const isTaken = await isUsernameTaken(formData.userName);
-                setIsUsernameValid(!isTaken);
-                setUsernameError(isTaken ? 'Username is already taken' : '');
-            }, 1000); // Задержка в 1 секунду
+                setIsUsernameValid(isTaken);
+                setUsernameError(!isTaken ? 'Username is already taken' : '');
+            }, 500); // Задержка в 1 секунду
     
             // Очистка таймера при каждом изменении username
             return () => clearTimeout(timer);
         } else {
-            setIsUsernameValid(null);
+            setIsUsernameValid(false);
             setUsernameError('');
         }
     }, [formData.userName]);
@@ -140,6 +140,9 @@ const RegisterPage: React.FC = () => {
                         </div>
                         {usernameError && (
                             <p className="text-red-500 text-sm mt-1">{usernameError}</p>
+                        )}
+                        {isUsernameValid && (
+                            <p className="text-green-500 text-sm mt-1">Username is available</p>
                         )}
                     </div>
                     <div className="md:w-1/2 md:mr-2">

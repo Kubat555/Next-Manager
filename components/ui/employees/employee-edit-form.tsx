@@ -14,7 +14,7 @@ type AddMemberModalProps = {
 const EditEmployeeModal: React.FC<AddMemberModalProps> = ({ isOpen, onClose, update, user }) => {
     const [selectedRole, setSelectedRole] = useState<string>('');
     const [isLoading, setIsLoading] = useState(false);
-    const [deleteLoading, setDeleteLoading] = useState(false);
+    // const [deleteLoading, setDeleteLoading] = useState(false);
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -35,26 +35,26 @@ const EditEmployeeModal: React.FC<AddMemberModalProps> = ({ isOpen, onClose, upd
         }
     };
 
-    const hadleEmployeeDelete = async () => {
-        if (!user) {
-            throw new Error('User is undefined');
-        }
-        setDeleteLoading(true);
-        try {
-            const confirmDelete = confirm('Are you sure you want to delete this employee?');
-            if (!confirmDelete) {
-                return;
-            }
-            await removeUser(user.id);
-            update();
-            onClose();
-        } catch (error) {
-            alert('Failed to delete employee. Please try again.');
-            console.error('Failed to delete employee:', error);
-        } finally {
-            setDeleteLoading(false);
-        }
-    };
+    // const hadleEmployeeDelete = async () => {
+    //     if (!user) {
+    //         throw new Error('User is undefined');
+    //     }
+    //     setDeleteLoading(true);
+    //     try {
+    //         const confirmDelete = confirm('Are you sure you want to delete this employee?');
+    //         if (!confirmDelete) {
+    //             return;
+    //         }
+    //         await removeUser(user.id);
+    //         update();
+    //         onClose();
+    //     } catch (error) {
+    //         alert('Failed to delete employee. Please try again.');
+    //         console.error('Failed to delete employee:', error);
+    //     } finally {
+    //         setDeleteLoading(false);
+    //     }
+    // };
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} title={"Change role: " + user?.firstName}>
@@ -72,7 +72,7 @@ const EditEmployeeModal: React.FC<AddMemberModalProps> = ({ isOpen, onClose, upd
                     </select>
                 </div>
                 <div className="flex justify-end">
-                    <button
+                    {/* <button
                         type="button"
                         className={"btnSecondary w-1/2 mr-5"}
                         disabled={deleteLoading}
@@ -85,10 +85,10 @@ const EditEmployeeModal: React.FC<AddMemberModalProps> = ({ isOpen, onClose, upd
                             </svg>
                         )}
                         {deleteLoading ? 'loading' : 'Delete employee'}
-                    </button>
+                    </button> */}
                     <button
                         type="submit"
-                        className="btnPrimary w-1/2"
+                        className="btnPrimary w-full"
                         disabled={isLoading}
                     >
                         {isLoading && (
