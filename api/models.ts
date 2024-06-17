@@ -31,6 +31,7 @@ export type User = {
     lastName: string;
     role: string;
     email: string;
+    userName:string;
   }
 
   export type UserData = {
@@ -133,3 +134,18 @@ export type TasksDataStatistics = {
     projectId: string;
     projectName: string;
 }
+
+// types.ts
+export interface ReportData {
+    projectName: string;
+    projectStatus: boolean;
+    dateTime: string;
+    statistics: Statistic[];
+  }
+
+export type Statistic = {
+    employeeName: string;
+    tasksCompleted: number;
+    tasksAssigned: number;
+}
+  

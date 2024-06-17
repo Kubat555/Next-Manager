@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import { Project, ProjectData, User } from "@api/models";
 import { getProjectById, EditProject, DeleteEmployee } from "@services/projectsService";
 import clsx from "clsx";
-import { TrashIcon, UserIcon } from '@heroicons/react/24/outline';
+import { TrashIcon, UserIcon, ChartBarIcon } from '@heroicons/react/24/outline';
 import { formatDate } from "@utils/format";
 import { getUsers } from "@services/userService";
 import AddMemberModal from "@components/ui/projects/employee-add-form";
 import LoadingIndicator from '@components/loadingIndicator';
+import Link from "next/link";
 
 const Page = ({ params }: { params: { id: string } }) => {
     const { id } = params;
@@ -104,8 +105,15 @@ const Page = ({ params }: { params: { id: string } }) => {
                     <p className="inline">Project <span className="text-sky-500"> {project?.name} </span></p>
                 </div>
                 <div className="hidden w-1/2 md:flex md:justify-end">
+                    {role === "Admin" && (
+                        <Link href={`/dashboard/projects/${id}/report`} className="btnSecondary mr-5 flex items-center">
+                            <ChartBarIcon className="h-5 mr-2 inline" />
+                            Report
+                        </Link>
+                    )}
+                    
                     <button
-                        className="btnSecondary mr-5 inline"
+                        className="btnSecondary mr-5 flex items-center"
                         onClick={()=> setIsOpen(true)}
                     >
                         <UserIcon className="h-5 mr-2 inline" />
@@ -150,6 +158,12 @@ const Page = ({ params }: { params: { id: string } }) => {
                         <UserIcon className="h-5 mr-2 inline" />
                         Add member
                     </button>
+                    {role === "Admin" && (
+                        <Link href={`/dashboard/projects/${id}/report`} className="btnSecondary mb-5 flex items-center justify-center md:hidden">
+                            <ChartBarIcon className="h-5 mr-2 inline" />
+                            Report
+                        </Link>
+                    )}
                     <div className="overflow-x-auto rounded-lg p-2 md:p-4 bg-gray-50 border">
                         <table className="min-w-full divide-y divide-gray-200 ">
                             <thead className="bg-gray-50">

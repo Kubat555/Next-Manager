@@ -1,4 +1,4 @@
-import { changeRole, checkUsername, deleteUser, fetchUserStatistic, fetchUsers } from "@api/data";
+import { changeRole, checkUsername, deleteUser, fetchUserData, fetchUserStatistic, fetchUsers } from "@api/data";
 import { User, UserStatistics } from "@api/models";
 
 export const getUserData = () => {
@@ -11,6 +11,18 @@ export const getUserData = () => {
     }
 
     return null;
+  } catch (error) {
+    console.error('Failed to get user data:', error);
+  }
+};
+
+export const getUser = async (userId: string) => {
+  try {
+    const res = await fetchUserData(userId);
+    if (!res.isSuccess) {
+      console.error('Failed to get user data:', res.message);
+    }
+    return res.response as User;
   } catch (error) {
     console.error('Failed to get user data:', error);
   }

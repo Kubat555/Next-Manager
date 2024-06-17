@@ -1,6 +1,6 @@
 // src/services/api.ts
 import axios from 'axios';
-import { ApiResponse, LoginResponse, Priority, Project, ProjectData, ProjectInfo, RegisterData, Role, Status, TaskData, Tasks, User, UserData, UserStatistics } from "@api/models";
+import { ApiResponse, LoginResponse, Priority, Project, ProjectData, ProjectInfo, RegisterData, ReportData, Role, Status, TaskData, Tasks, User, UserData, UserStatistics } from "@api/models";
 
 const API_URL = "https://project-management-system-001.azurewebsites.net/api"; // Замените на ваш URL
 
@@ -134,8 +134,8 @@ export const deleteUser = async (id: string): Promise<ApiResponse<null>> => {
   return response.data;
 };
 
-export const updateUser = async (id: string, userData: UserData): Promise<ApiResponse<null>> => {
-  const response = await api.put('/Users/EditUser/', {params: { id }, userData});
+export const updateUser = async ( userData: User): Promise<ApiResponse<null>> => {
+  const response = await api.put('/Users/UpdateUser/', userData);
   return response.data;
 };
 
@@ -157,4 +157,10 @@ export const fetchUserStatistic = async (id: string): Promise<ApiResponse<UserSt
 export const checkUsername = async (userName: string): Promise<ApiResponse<null>> => {
   const response = await api.get('/Authentication/UsernameCheck/', { params: { userName } });
   return response.data;
+};
+
+
+export const fetchReportData = async (projectId : number): Promise<ReportData | null> => {
+    const response = await api.get(`/ProjectContoller/GetReport?projectId=${projectId}`);
+    return response.data.response;
 };
