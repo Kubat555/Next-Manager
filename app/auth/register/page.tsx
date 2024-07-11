@@ -62,7 +62,7 @@ const RegisterPage: React.FC = () => {
                 console.error(res.message);
             }
             else {
-                router.push('/register/success');
+                router.push('/auth/register/success');
             }
         }
         catch (err) {

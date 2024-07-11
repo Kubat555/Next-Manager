@@ -5,6 +5,7 @@ import React from "react";
 import { AuroraBackground } from "@components/ui/aurora-background";
 import Link from "next/link";
 
+
 export default function Page() {
   return (
     <AuroraBackground>
@@ -22,8 +23,9 @@ export default function Page() {
           Welcome to Next Manager
         </div>
         <div className="font-extralight text-base md:text-2xl text-neutral-200 py-4 px-[2rem] text-center">
-          This is a full-stack application utilizing Next.js, Tailwind CSS, and TypeScript for the frontend, and ASP.NET Core, C#, SQL Server, and Azure for the backend.
+        In today's business environment, where speed and accuracy of project execution are critical, project management tools become essential. The proposed system is designed to solve these problems by providing tools for defining tasks, setting deadlines and controlling execution. This creates the conditions for more transparent, structured and efficient work, which is the basis for successful project completion.
         </div>
+        
         <Link href={"/auth/login"} className="btnSecondary text-lg ">
           Lets start!
         </Link>

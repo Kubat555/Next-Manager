@@ -2,8 +2,8 @@
 import axios from 'axios';
 import { ApiResponse, LoginResponse, Priority, Project, ProjectData, ProjectInfo, RegisterData, ReportData, Role, Status, TaskData, Tasks, User, UserData, UserStatistics } from "@api/models";
 
-const API_URL = "https://project-management-system-001.azurewebsites.net/api"; // Замените на ваш URL
-
+const API_URL = "https://next-manager-west-europe.azurewebsites.net/api"; // Замените на ваш URL
+// const API_URL = "https://localhost:7156/api";
 const api = axios.create({
   baseURL: API_URL,
 

@@ -43,6 +43,7 @@ const UserPage = () => {
         }
         await updateUser(userData);
         alert('User edited successfully');
+        localStorage.setItem("userName", firstName)
     } catch (error) {
         alert('Failed to edit User. Please try again.');
         console.error('Failed to edit User:', error);
@@ -61,7 +62,7 @@ const UserPage = () => {
             name="firstName"
             id="firstName"
             type="text"
-            disabled
+            
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -73,7 +74,7 @@ const UserPage = () => {
             name="lastName"
             id="lastName"
             type="text"
-            disabled
+            
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -107,18 +108,18 @@ const UserPage = () => {
             name="userName"
             id="userName"
             type="text"
-            defaultValue={"@"+user?.userName}
+            defaultValue={user?.userName}
             disabled
             className="bg-gray-50 border border-gray-300 text-blue-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-        {/* <button
+        <button
           type="submit"
           className="btnSecondary w-full flex items-center justify-center"
           disabled={isLoading}
         >
           {isLoading ? 'Saving...' : 'Save Changes'}
-        </button> */}
+        </button>
       </form>
     </div>
   );

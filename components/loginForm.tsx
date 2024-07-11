@@ -38,6 +38,7 @@ export default function LoginForm() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md p-8">
+        
         <h1 className="text-2xl font-bold mb-6 text-center sky-animated">Let's log in!</h1>
         {error && (
           <div className="mb-4 p-4 text-red-700 bg-red-100 rounded-lg flex items-center">
