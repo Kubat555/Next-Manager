@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from '@components/ui/modal';  // Импорт вашего компонента Modal
 import { User } from '@api/models';
 import { changeUserRole, removeUser } from '@services/userService';
+import { changeRole } from '@api/data';
 
 
 type AddMemberModalProps = {
@@ -23,12 +24,13 @@ const EditEmployeeModal: React.FC<AddMemberModalProps> = ({ isOpen, onClose, upd
         }
         setIsLoading(true);
         try {
-            await changeUserRole(user.id, selectedRole);
+            await changeRole(user.id, selectedRole);
             update();
             onClose();
         }
         catch (error) {
             console.error('Failed to change employee role:', error);
+            alert('Failed to change employee role. Remember that you can not change your own role or another admin role.');
         }
         finally{
             setIsLoading(false);

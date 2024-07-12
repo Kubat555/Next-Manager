@@ -1,15 +1,14 @@
 import {
-    BanknotesIcon,
+    ClipboardDocumentCheckIcon,
     ClockIcon,
-    UserGroupIcon,
-    InboxIcon,
+    RectangleStackIcon,
   } from '@heroicons/react/24/outline';
   
   const iconMap = {
-    collected: BanknotesIcon,
-    customers: UserGroupIcon,
-    pending: ClockIcon,
-    invoices: InboxIcon,
+    collected: ClockIcon,
+    customers: RectangleStackIcon,
+    pending: ClipboardDocumentCheckIcon,
+    invoices: RectangleStackIcon,
   };
   
   export const CardWrapper = ({

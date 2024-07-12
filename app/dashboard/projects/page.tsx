@@ -1,8 +1,6 @@
 'use client';
 
 import { BentoGrid, BentoGridItem } from "@components/ui/bento-grid";
-import Image from "next/image";
-import ProjImage from "@public/proj-img.jpg";
 import { getProjects } from "@services/projectsService";
 import { useEffect, useState } from "react";
 import { Project } from "@api/models";
@@ -49,6 +47,7 @@ const Page = () => {
             header={<Skeleton />}
             date={formatDate(item.createdDate)}
             projectId={item.id}
+            isCompleted={item.isCompleted}
             className=""
           />
         ))
@@ -60,7 +59,7 @@ const Page = () => {
 export default Page;
 
 const Skeleton = () => (
-  <div className="rounded-t-lg h-2 w-full bg-sky-100">
+  <div className="rounded-t-lg h-2 w-full bg-slate-800">
   </div>
 );
 
