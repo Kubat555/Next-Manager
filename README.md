@@ -15,6 +15,17 @@ Next Manager is a web application that helps teams manage projects efficiently. 
 - **Responsive Design**: Access the application on any device with a responsive and user-friendly interface.
 - **Integration with PostgreSQL**: Robust data storage using PostgreSQL, ensuring data integrity and reliability.
 
+## Web Pages
+![sign in](https://github.com/Kubat555/Next-Manager/blob/a8bc2f4908078a0688f04762ed952902296fd8fa/readmefiles/1.png)
+![sign up](https://github.com/Kubat555/Next-Manager/blob/a8bc2f4908078a0688f04762ed952902296fd8fa/readmefiles/2.png)
+![dashboard](https://github.com/Kubat555/Next-Manager/blob/a8bc2f4908078a0688f04762ed952902296fd8fa/readmefiles/3.png)
+![projects](https://github.com/Kubat555/Next-Manager/blob/a8bc2f4908078a0688f04762ed952902296fd8fa/readmefiles/4.png)
+![tasks](https://github.com/Kubat555/Next-Manager/blob/a8bc2f4908078a0688f04762ed952902296fd8fa/readmefiles/5.png)
+![viewing and editing task](https://github.com/Kubat555/Next-Manager/blob/a8bc2f4908078a0688f04762ed952902296fd8fa/readmefiles/6.png)
+![project information](https://github.com/Kubat555/Next-Manager/blob/a8bc2f4908078a0688f04762ed952902296fd8fa/readmefiles/7.png)
+![report](https://github.com/Kubat555/Next-Manager/blob/a8bc2f4908078a0688f04762ed952902296fd8fa/readmefiles/8.png)
+![employees](https://github.com/Kubat555/Next-Manager/blob/a8bc2f4908078a0688f04762ed952902296fd8fa/readmefiles/9.png)
+
 
 ## Getting Started
 
