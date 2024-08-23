@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { handleLogin } from '@services/authService';
+import ClickBoard from './ui/clickboard';
+import Accordion from './ui/accordion';
 
 
 
@@ -39,7 +41,13 @@ export default function LoginForm() {
     <div className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md p-8">
         
-        <h1 className="text-2xl font-bold mb-6 text-center sky-animated">Let's log in!</h1>
+        <h1 className="text-2xl font-bold mb-3 text-center sky-animated">Let's log in!</h1>
+        <Accordion title="Do you want test app without registration? ^_^">
+          <p className="mb-1">You can log in as administrator for testing:</p>
+          <ClickBoard value="superuser" label="Username: superuser" />
+          <ClickBoard value="user777" label="Password: user777" />
+        </Accordion>
+        
         {error && (
           <div className="mb-4 p-4 text-red-700 bg-red-100 rounded-lg flex items-center">
             <ExclamationCircleIcon className="h-5 w-5 mr-2" />
